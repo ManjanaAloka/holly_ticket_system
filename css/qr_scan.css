@@ -1,0 +1,19 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#reader {
+    width: 500px;
+}
+
+video {
+    background-color: red;
+    border-radius: 20px;
+}
+
+#result {
+    text-align: center;
+    font-size: 1.5rem;
+}
