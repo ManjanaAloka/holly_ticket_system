@@ -10,9 +10,4 @@ $dbname = "holly";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-function loginidentfy($_email)
-{
-    if (!isset($email)) {
-        header('Location:../holly/');
-    }
-};
+

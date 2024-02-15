@@ -1,13 +1,13 @@
 <?php
-error_reporting(0);
-include '../include/conn.php';
+// error_reporting(0);
 session_start();
+include 'include/conn.php';
+include 'include/controller.php';
 
 $open = $_REQUEST['open'];
 $__email = $_SESSION['email'];
 
 loginidentfy($__email);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
