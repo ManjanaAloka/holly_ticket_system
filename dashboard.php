@@ -4,7 +4,9 @@ include '../include/conn.php';
 session_start();
 
 $open = $_REQUEST['open'];
+$__email = $_SESSION['email'];
 
+loginidentfy($__email);
 
 ?>
 <!DOCTYPE html>
@@ -68,7 +70,7 @@ $open = $_REQUEST['open'];
                         <!-- end cards -->
 
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-md-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
@@ -86,8 +88,8 @@ $open = $_REQUEST['open'];
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-auto" style="padding: 10px !important;">
-                                <div class="card mb-4">
+                            <div class="" style="padding: 10px !important;width: fit-content !important;margin: 0 auto;">
+                                <div class="card">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
                                         Your Ticket

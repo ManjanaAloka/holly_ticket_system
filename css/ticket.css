@@ -1,14 +1,14 @@
 #capture {
     background-color: rgb(0, 42, 70);
     width: 300px;
-    height: 700px;
+    height: fit-content;
     overflow: hidden;
     border-radius: 5px;
 }
 
 .ticket {
     width: 300px;
-    height: 700px;
+    height: fit-content;
     border-radius: 5px;
     background: linear-gradient(120deg, rgba(3, 1, 47, 0.88) 0%, rgba(0, 42, 70, 1) 35%, rgb(0, 103, 124) 100%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

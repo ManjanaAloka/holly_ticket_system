@@ -42,70 +42,7 @@ if ($_REQUEST['create_ticket'] == true) {
         $result['ref_ticket_count'] = $slect2->num_rows;
         $result['create_ticket'] = "1"; // kalin id eka use karala
         if ($_REQUEST['ref_ticket'] == true) {
-            // $sql = $conn->query("INSERT INTO ticket(`user_id`,`qr`, `date`) VALUES ('$index','$qr_code','$date')");
-
-
-            //⁡⁢⁣⁢====================== Sent Mail =======================⁡
-            if ($_REQUEST['sent__mail'] == true) {
-                $sender__mail = $_REQUEST['sender__mail'];
-                $base64__data = $_REQUEST['base64__data'];
-                $qr__code = $_REQUEST['qr__code'];
-
-                #############===𝘽𝙖𝙨𝙚 𝟲𝟰 𝙙𝙖𝙩𝙖 𝙘𝙤𝙣𝙫𝙚𝙧𝙩 𝙛𝙞𝙡𝙚 𝙖𝙣𝙙 𝙨𝙖𝙫𝙚 part======################
-                // Base64 encoded string representing the image data
-                $base64_string = $base64__data;
-
-                // Extracting the Base64 data part
-                $data = explode(',', $base64_string)[1];
-
-                // Decode the Base64 string
-                $image_data = base64_decode($data);
-
-                // Generate a unique filename
-                $filename = "../tickets/" . $qr__code . '.png';
-
-                // Save the image data to a file
-                file_put_contents($filename, $image_data);
-
-                #############===𝙎𝙚𝙣𝙩 𝙈𝙖𝙞𝙡 𝙥𝙖𝙧𝙩======################
-
-                // $to = $sender__mail;
-                // $subject = 'UoVT Holly Ticket';
-                // $from = 'manjanaaloka997@gmail.com';
-
-                // // Read the file content
-                // $file_content = file_get_contents($filename);
-
-                // // Generate a boundary
-                // $boundary = md5(time());
-
-                // // Headers
-                // $headers = "From: $from\r\n";
-                // $headers .= "MIME-Version: 1.0\r\n";
-                // $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
-
-                // // Message content
-                // $message = "--$boundary\r\n";
-                // $message .= "Content-Type: text/plain; charset=\"UTF-8\"\r\n";
-                // $message .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-                // $message .= "Please find the attached file.\r\n\r\n";
-
-                // // File attachment
-                // $message .= "--$boundary\r\n";
-                // $message .= "Content-Type: application/octet-stream; name=\"" . basename($file_path) . "\"\r\n";
-                // $message .= "Content-Transfer-Encoding: base64\r\n";
-                // $message .= "Content-Disposition: attachment\r\n\r\n";
-                // $message .= chunk_split(base64_encode($file_content)) . "\r\n";
-
-                // // Closing boundary
-                // $message .= "--$boundary--";
-
-                // Send email
-                // mail($to, $subject, $message, $headers);
-                $result['qr__code'] = $base64__data;
-                $result['sent__mail'] = 'ok';
-            }
-            //⁡⁢⁣⁢=======================================================⁡
+            $sql = $conn->query("INSERT INTO ticket(`user_id`,`qr`, `date`) VALUES ('$index','$qr_code','$date')");
             $result['qr'] = $qr_code;
             $result['ref_ticket'] = "ok"; // try again
 
@@ -123,6 +60,67 @@ if ($_REQUEST['create_ticket'] == true) {
     $result['index'] = $index;
 }
 
+//⁡⁢⁣⁢====================== Sent Mail =======================⁡
+if ($_REQUEST['sent__mail'] == true) {
+    $sender__mail = $_REQUEST['sender__mail'];
+    $base64__data = $_REQUEST['base64__data'];
+    $qr__code = $_REQUEST['qr__code'];
+
+    #############===𝘽𝙖𝙨𝙚 𝟲𝟰 𝙙𝙖𝙩𝙖 𝙘𝙤𝙣𝙫𝙚𝙧𝙩 𝙛𝙞𝙡𝙚 𝙖𝙣𝙙 𝙨𝙖𝙫𝙚 part======################
+    // Base64 encoded string representing the image data
+    $base64_string = $base64__data;
+
+    // Extracting the Base64 data part
+    $data = explode(',', $base64_string)[1];
+
+    // Decode the Base64 string
+    $image_data = base64_decode($data);
+
+    // Generate a unique filename
+    $filename = "../tickets/" . $qr__code . '.png';
+
+    // Save the image data to a file
+    file_put_contents($filename, $image_data);
+
+    #############===𝙎𝙚𝙣𝙩 𝙈𝙖𝙞𝙡 𝙥𝙖𝙧𝙩======################
+
+    $to = $sender__mail;
+    $subject = 'UoVT Holly Ticket';
+    $from = 'manjanaaloka997@gmail.com';
+
+    // Read the file content
+    $file_content = file_get_contents($filename);
+
+    // Generate a boundary
+    $boundary = md5(time());
+
+    // Headers
+    $headers = "From: $from\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+
+    // Message content
+    $message = "--$boundary\r\n";
+    $message .= "Content-Type: text/plain; charset=\"UTF-8\"\r\n";
+    $message .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $message .= "Please find the attached file.\r\n\r\n";
+
+    // File attachment
+    $message .= "--$boundary\r\n";
+    $message .= "Content-Type: application/octet-stream; name=\"" . basename($filename) . "\"\r\n";
+    $message .= "Content-Transfer-Encoding: base64\r\n";
+    $message .= "Content-Disposition: attachment\r\n\r\n";
+    $message .= chunk_split(base64_encode($file_content)) . "\r\n";
+
+    // Closing boundary
+    $message .= "--$boundary--";
+
+    // Send email
+    // mail($to, $subject, $message, $headers);
+    $result['qr__code'] = $base64__data;
+    $result['sent__mail'] = 'ok';
+}
+//⁡⁢⁣⁢=======================================================
 
 // =====================  scan ticket  ========================
 if ($_REQUEST['scan'] == true) {

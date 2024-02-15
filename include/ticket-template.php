@@ -21,6 +21,6 @@
 
             </div>
         </div>
-        <p class="ticket__details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget molestie consequat, odio turpis auctor sapien, quis tristique leo risus ac ligula. Donec euismod est eu augue tincidunt, eget sodales nisl aliquam.</p>
+        <p class="ticket__details">onec euismod est eu augue tincidunt, eget sodales nisl aliquam.</p>
     </div>
 </div>

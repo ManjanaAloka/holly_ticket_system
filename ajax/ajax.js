@@ -95,7 +95,7 @@ $(document).ready(function() {
                                             $("#convertToImage").on('click', function() {
                                                 var imgageData = getCanvas.toDataURL("image/png");
                                                 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                                                // $("#convertToImage").attr("download", response['index'] + ".png").attr("href", newData);
+                                                $("#convertToImage").attr("download", response['index'] + ".png").attr("href", newData);
 
                                                 // =====================  send mail  ========================
                                                 formData.append('sent__mail', true);
@@ -110,11 +110,12 @@ $(document).ready(function() {
                                                     contentType: false,
                                                     success: function(response) {
                                                         var response = JSON.parse(response);
-                                                        // console.log(response['qr__code']);
-                                                        if (response['sent__mail'] == 'ok') {}
+                                                        if (response['sent__mail'] == 'ok') {
+                                                            swal("Ticket is send..📩", "", "success");
+                                                        }
                                                     }
                                                 });
-                                                // setInterval(function() { location.reload(); }, 700);
+                                                setInterval(function() { location.reload(); }, 700);
                                             });
                                             // =====================  ⁡⁢⁣⁢download canvas⁡  ========================
                                         }
@@ -131,7 +132,8 @@ $(document).ready(function() {
                     $(".demo").qrcode({
                         text: response['qr']
                     });
-                    // =====================  ⁡⁢⁣⁢download canvas⁡  ========================
+
+                    // =====================  ⁡⁢⁣⁡⁢⁣⁢download ⁡⁢⁣⁢canvas⁡  ========================
                     var element = $("#capture"); // global variable
                     var getCanvas; // global variable
                     html2canvas(element, { onrendered: function(canvas) { getCanvas = canvas; } });
@@ -139,9 +141,29 @@ $(document).ready(function() {
                         var imgageData = getCanvas.toDataURL("image/png");
                         var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
                         $("#convertToImage").attr("download", response['index'] + ".png").attr("href", newData);
-                        setInterval(function() { location.reload(); }, 700);
+
+                        // =====================  send mail  ========================
+                        formData.append('sent__mail', true);
+                        formData.append('sender__mail', response['index']);
+                        formData.append('base64__data', newData);
+                        formData.append('qr__code', response['qr']);
+                        $.ajax({
+                            url: 'ajax/ajax.php',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                var response = JSON.parse(response);
+                                if (response['sent__mail'] == 'ok') {
+                                    swal("Ticket is send..📩", "", "success");
+                                }
+                            }
+                        })
+                        setInterval(function() { location.reload(); }, 2000);
                     });
                     // =====================  ⁡⁢⁣⁢download canvas⁡  ========================
+
                 } else {
                     swal("Please Tryagain !", "", "error");
                     setInterval(function() { location.reload(); }, 1000);
@@ -193,7 +215,7 @@ $(document).ready(function() {
                 } else if (response['scan'] == '3') {
                     swal("A previously used ticket !", "", "warning");
                 } else {
-                    swal("Unvalid Ticket !", "", "error");
+                    swal("Invalid Ticket !", "", "error");
                 }
             }
         );
