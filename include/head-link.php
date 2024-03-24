@@ -23,20 +23,51 @@
     <!-- image download library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 
-    <!-- qr library -->
-    <script src="js/jquery-qrcode.js"></script>
-
-    <!-- qr scaner -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
     <link href="css/styles.css" rel="stylesheet" />
 
-    <!-- ticket -->
-    <link href="css/ticket.css" rel="stylesheet" />
+    <?php if ($open == "create_ticket") { ?>
+        <!-- qr library -->
+        <script src="js/jquery-qrcode.js"></script>
 
-    <!-- qr scaner css -->
-    <link href="css/qr_scan.css" rel="stylesheet" />
+        <!-- ticket -->
+        <link href="css/ticket.css" rel="stylesheet" />
+    <?php } ?>
+
+
+    <?php if ($open == "Scan_Ticket") { ?>
+        <!-- qr scaner -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+       
+        <!-- qr scaner css -->
+        <link href="css/qr_scan.css" rel="stylesheet" />
+    <?php } ?>
+
+    <?php if($open=="Tickets"){ ?>
+    <?php } ?>
+
+    <?php if($open=="booth"){ ?>
+        <!-- qr scaner -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+       
+        <!-- qr scaner css -->
+        <link href="css/qr_scan.css" rel="stylesheet" />
+    <?php } ?>
+
+    <?php if($open=="uploadphoto"){ ?>
+        <!-- qr scaner -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+       
+        <!-- qr scaner css -->
+        <link href="css/qr_scan.css" rel="stylesheet" />
+
+        <!-- booth frame css -->
+        <link href="css/booth_frame.css" rel="stylesheet" />
+    <?php } ?>
+
+
+
+
+
 
 
 </head>

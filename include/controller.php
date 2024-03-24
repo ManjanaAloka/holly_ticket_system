@@ -6,9 +6,4 @@ function loginidentfy($__email)
     }
 };
 
-  
-
-
-
-
 ?>

@@ -1,0 +1,24 @@
+.booth_frame {
+    padding: 0;
+    margin: 0;
+    width: 1080px;
+    height: 570px;
+    overflow: hidden;
+    margin: 0 auto;
+    /* background-color: yellow; */
+}
+
+.template {
+    /* z-index: -1; */
+    position: absolute;
+    top: -250px;
+}
+
+.booth_img {
+    /* z-index: 99999999; */
+    position: absolute;
+    top: 100px;
+    width: 479px;
+    height: 479px;
+    /* border-radius: 50%; */
+}
